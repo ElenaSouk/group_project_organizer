@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/activity_tracking"
+            android:icon="@android:drawable/alert_light_frame"
+            android:title="Activity Tracking" />
+
+        <item
+            android:id="@+id/food_nutrition_information_tracker"
+            android:icon="@android:drawable/arrow_down_float"
+            android:title="Food Nutrition information tracker" />
+
+        <item
+            android:id="@+id/automobile"
+            android:icon="@android:drawable/btn_dialog"
+            android:title="Automobile" />
+    <item
+        android:id="@+id/house_thermostat"
+        android:icon="@android:drawable/btn_default_small"
+        android:title="House Thermostat" />
+
+    </menu>
+
