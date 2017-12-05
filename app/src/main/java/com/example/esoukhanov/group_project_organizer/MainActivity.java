@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "House thermostat is selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.automobile:
-                        //Intent fourth = new Intent(context, Automobile.class);
-                        //startActivity(fourth);
+                        Intent fourth = new Intent(context, Automobile.class);
+                        startActivity(fourth);
                         Toast.makeText(MainActivity.this, "Automobile is selected", Toast.LENGTH_SHORT).show();
                         break;
                 }
