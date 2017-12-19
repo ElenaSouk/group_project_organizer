@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Grupni_Project</string>
+    <string name="price">Cena</string>
+    <string name="date">Datum</string>
+    <string name="km">Km</string>
+    <string name="add">Dodaj</string>
+    <string name="litars">Litri</string>
+    <string name="dialog_message2"> Autor: Mila-Stana Bozovic. Verzija:  1.0.
+        Dugme Honda Model ce ucitati hondine modele od 1978 do danas.
+        Dugme Dodaj ce dodati novi record u listi i sortirati ih po datumu.
+        Kliknuvsi na record novi ucitace se fragment sa detaljima o rekordu i dugmetom za brisanje rekorda.</string>
+    <string name="dialog_message">Sva polja su obavezna!!  </string>
+    <string name="ok">DA</string>
+    <string name="dialog_title2">Automobile Info</string>
+    <string name="dialog_title">GRESKA</string>
+    <string name="cancel">Odkazi</string>
+    <string name="Price">Trenutna cena</string>
+    <string name="idHere">ID</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="delete_this_record">Obrisi ovaj record</string>
+</resources>

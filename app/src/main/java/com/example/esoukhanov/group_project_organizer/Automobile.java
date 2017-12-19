@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -25,8 +27,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class Automobile extends FragmentActivity {
 protected ListView list_view;
@@ -35,7 +42,7 @@ protected EditText e_litars;
 protected EditText e_price;
 protected EditText e_km;
 protected Button add, curentPrice;
-protected ArrayList<ListItim> array;
+protected ArrayList<ListItim> array = new ArrayList<ListItim>();
 protected ListItim itim;
 protected ListItimAdapter messageAdapter;
     protected Cursor cursor;
@@ -45,7 +52,9 @@ protected ListItimAdapter messageAdapter;
     protected static final String ACTIVITY_NAME = "Automobile";
     protected AutomobileDatabaseHelper mydbase;
     protected SQLiteDatabase dbase;
+    protected Context context;
     protected ContentValues cv;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,40 +64,43 @@ protected ListItimAdapter messageAdapter;
         frame=(FrameLayout)findViewById(R.id.frame);
         fl = frame!=null;
 
-        Context context = getApplicationContext();
-        list_view =(ListView) findViewById(R.id.list_view);
+        fab= findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(Automobile.this);
+                builder.setMessage(R.string.dialog_message2);
+                builder.setTitle(R.string.dialog_title2);
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        dialog.cancel();
+                    }
+                }).show();
+
+            }
+        });
+
         e_date = (EditText)findViewById(R.id.date);
+        //e_date.setFocusable(false);
         e_litars =(EditText) findViewById(R.id.litars);
         e_price =(EditText) findViewById(R.id.price);
         e_km =(EditText) findViewById(R.id.km);
         add =(Button) findViewById(R.id.add);
-        array = new ArrayList<ListItim>();
-
         curentPrice = (Button) findViewById(R.id.Price);
+
+        list_view =(ListView) findViewById(R.id.list_view);
         messageAdapter = new ListItimAdapter(this);
         list_view.setAdapter(messageAdapter);
 
+        context = getApplicationContext();
         mydbase = new AutomobileDatabaseHelper(context) ;
         dbase = mydbase.getReadableDatabase();
         cv= new ContentValues();
 
-        cursor = dbase.rawQuery("select * from " + AutomobileDatabaseHelper.TABLE_NAME, null);
-        cursor .moveToFirst();
-        while(!cursor.isAfterLast() ){
-            //String date= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_DATE)));
-           // String litars= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_LITARS)));
-           // String price= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_PRICE)));
-           // String km= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_KM)));
-            itim = new ListItim (cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-            array.add(itim);
-            Log.i("Automobile", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_DATE)));
-            cursor.moveToNext();
-        }
 
-        Log.i("Automobile", "Cursor’s  column count =" + cursor.getColumnCount() );
-        for (int i = 0; i < cursor.getColumnCount(); i++ ){
-            Log.i("Automobile", cursor.getColumnName(i));
-        }
+       populate();
 
         e_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +136,8 @@ protected ListItimAdapter messageAdapter;
 
                 if (!date.isEmpty() && !litars.isEmpty() && !price.isEmpty() && !km.isEmpty() ) {
                     array.add(itim);
-                    messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount()/getView()
+                    //sort();
+                   // messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount()/getView()
 
                     ContentValues values = new ContentValues();
                     values.put(AutomobileDatabaseHelper.KEY_DATE, date);
@@ -137,9 +150,7 @@ protected ListItimAdapter messageAdapter;
                     e_litars.setText("");
                     e_price.setText("");
                     e_km.setText("");
-                    cursor = dbase.rawQuery("select * from " + AutomobileDatabaseHelper.TABLE_NAME, null);
-                    Toast.makeText(Automobile.this, "One row added", Toast.LENGTH_SHORT).show();
-                }else{
+                  }else{
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Automobile.this);
                     builder.setMessage(R.string.dialog_message);
                     builder.setTitle(R.string.dialog_title);
@@ -153,15 +164,15 @@ protected ListItimAdapter messageAdapter;
                     builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
-                            /**Intent resultIntent = new Intent(  );
-                            resultIntent.putExtra("Response", "Here is my response");
-                            setResult(Activity.RESULT_OK, resultIntent);*/
+
                             Automobile.this.finish();
                         }
                     })
                             .show();
                 }
 
+                Snackbar.make(v,"One row added" ,Snackbar.LENGTH_LONG).show();
+                populate();
             }
         });
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,6 +187,7 @@ protected ListItimAdapter messageAdapter;
                 String price= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_PRICE)));
                 String km= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_KM)));
                 Log.i("Automobile", "ID=="+itemID+" ItemMessage=="+date);
+                array.add(itim);
                 //Checking for phone
                 Bundle args = new Bundle();
                 args.putInt("lineViewID",position);
@@ -210,8 +222,32 @@ protected ListItimAdapter messageAdapter;
                 }
             }
         });
+        curentPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(ACTIVITY_NAME, "User clicked Weather Forecast");
+                Intent i = new Intent(Automobile.this, Honda_Types.class);
+                startActivity(i);
+            }
+        });
     }
-
+    public void populate(){
+        array.clear();
+        cursor = dbase.rawQuery("select * from " + AutomobileDatabaseHelper.TABLE_NAME, null);
+        cursor .moveToFirst();
+        while(!cursor.isAfterLast() ){
+            //String date= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_DATE)));
+            // String litars= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_LITARS)));
+            // String price= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_PRICE)));
+            // String km= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_KM)));
+            itim = new ListItim (cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+            array.add(itim);
+            Log.i("Automobile", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_DATE)));
+            cursor.moveToNext();
+        }
+       sort();
+        messageAdapter.notifyDataSetChanged();
+    }
     //On result return handler
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -230,12 +266,13 @@ protected ListItimAdapter messageAdapter;
     }
     protected void eraseMessage(int lineViewID, Long lineID){
         // Deleting from Arraylist
-        array.remove(lineViewID);
+       // array.remove(lineViewID);
         // Deleting row from database
         dbase.delete(AutomobileDatabaseHelper.TABLE_NAME, AutomobileDatabaseHelper.KEY_ID + "=" + lineID, null);
         //Update Cursor
-        cursor = dbase.rawQuery("SELECT * FROM "+AutomobileDatabaseHelper.TABLE_NAME, null);
-        messageAdapter.notifyDataSetChanged();
+        //cursor = dbase.rawQuery("SELECT * FROM "+AutomobileDatabaseHelper.TABLE_NAME, null);
+       // messageAdapter.notifyDataSetChanged();
+        populate();
     }
 
     private class ListItimAdapter extends ArrayAdapter<ListItim> {
@@ -294,6 +331,34 @@ protected ListItimAdapter messageAdapter;
         super.onDestroy();
         dbase.close();
         cursor.close();
+        cv.clear();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
+    }
+    public void sort(){
+        //Sorting the Array
+        Collections.sort(array, new MyComparator());
+    }
+    //Custom Comparator
+    private class MyComparator implements Comparator<ListItim> {
+
+        @Override
+        public int compare(ListItim o1, ListItim o2) {
+            SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String inputString1 = o1.getDate();
+            String inputString2 = o2.getDate();
+            //		String inputString1 = "23/01/1997";
+//		String inputString2 = "27/04/1997";
+            long diff = 0;
+
+            try {
+                Date date1 = myFormat.parse(inputString1);
+                Date date2 = myFormat.parse(inputString2);
+                diff = date2.getTime() - date1.getTime();
+            } catch (ParseException e) {
+                e.printStackTrace();
+
+            }
+            return (int) diff;
+        }
     }
 }

@@ -33,7 +33,7 @@ public class BlankFragment extends Fragment {
         TextView litarsText =(TextView) view.findViewById(R.id.litarsHere);
         TextView priceText =(TextView) view.findViewById(R.id.priceHere);
         TextView kmText =(TextView) view.findViewById(R.id.kmHere);
-        TextView idText = (TextView) view.findViewById(R.id.idHere);
+        TextView idText = (TextView) view.findViewById(R.id.asd);
         // Setting boxes with texts from bundles
         dateText.setText(args.getString("iDate"));
         litarsText.setText(args.getString("iLitars"));
