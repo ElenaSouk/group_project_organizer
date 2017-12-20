@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class AutomobileDatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "carDatabase";
+    public static final String DATABASE_NAME = "carDatabase1";
     public static final int VERSION_NUM = 3; // change version_number and call onUpadate()
     public final static String KEY_ID = "id";
     public final static String KEY_DATE = "date";

@@ -181,6 +181,7 @@ protected ListItimAdapter messageAdapter;
                 long itemID;
 
                 Log.i("Automobile", "I=="+position+" l=="+id);
+
                 itemID = messageAdapter.getItemId(position);
                 String date= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_DATE)));
                 String litars= cursor.getString((cursor.getColumnIndex(AutomobileDatabaseHelper.KEY_LITARS)));
