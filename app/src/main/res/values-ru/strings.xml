@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Save">Сохранить</string>
+    <string name="Close">Закрыть</string>
+    <string name="SaveAsNewDay">Сохранить день</string>
+    <string name="Ok">Закрыть</string>         
+    <string name="Monday">Понедельник</string>
+    <string name="Tuesday">Вторник</string>
+    <string name="Wednesday">Среда</string>
+    <string name="Thursday">Четверг</string>
+    <string name="Friday">Пятница</string>
+    <string name="Saturday">Суббота</string>
+    <string name="Sunday">Воскресение</string>
+    <string name="Temperature_is_changed">Температурный режим изменён</string>
+    <string name="Day_temperature_rules_were_changed">День недели изменён</string>
+    <string name="Information">Информация</string>
+    <string name="Author">Автор: Елена Суханова</string>
+    <string name="Version">Номер версии: 1</string>
+    <string name="How_to">Инструкция</string>
+    <string name="Save_Edit"><b><i>Сохранить</i></b> - Установить температурный режим и сохранить</string>
+    <string name="Save_new_day">Сохранить день - Выбрать день и сохранить</string>
+    <string name="Close_Dialog">Закрыть – Закрыть окно</string>
+    <string name="Help">Помощь</string>
+    <string name="About">О проекте</string>
+    <string name="House_Thermostat">Домашний термостат</string>
+
+</resources>
