@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/relativeLayout">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/thermo_menu_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <ProgressBar
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="28dp"
+        android:id="@+id/normProgBar"
+
+        android:visibility="invisible"
+        />
+    <Spinner
+        android:id="@+id/weekday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/weekday_arrays"
+        android:prompt="@string/weekday_prompt" />
+    <!--TextView
+        android:id="@+id/weekday"
+        android:layout_width="fill_parent"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" /-->
+
+    <EditText
+        android:id="@+id/morning_temp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weekday" />
+    <EditText
+        android:id="@+id/afternoon_temp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/morning_temp" />
+    <EditText
+        android:id="@+id/evening_temp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/afternoon_temp" />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/Save"
+        app:layout_constraintBaseline_toBaselineOf="@+id/dialogButtonClose"
+        app:layout_constraintBottom_toBottomOf="@+id/dialogButtonClose"
+        app:layout_constraintStart_toStartOf="@+id/weekday" />
+
+    <Button
+        android:id="@+id/dialogButtonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/Close"
+        app:layout_constraintStart_toEndOf="@+id/dialogButtonOK"
+        app:layout_constraintTop_toBottomOf="@+id/evening_temp" />
+
+    <Button
+        android:id="@+id/dialogButtonNew"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/SaveAsNewDay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/evening_temp" />
+</android.support.constraint.ConstraintLayout>
