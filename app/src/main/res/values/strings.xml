@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">Group_Project_Organizer</string>
+    <string name="weekday_prompt">Choose a weekday</string>
+    <string-array name="weekday_arrays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+    <string name="Save">Save</string>
+    <string name="Close">Close</string>
+    <string name="SaveAsNewDay">Save As New Day</string>
+    <string name="Temperature_is_changed">Temperature is changed</string>
+    <string name="Day_temperature_rules_were_changed">Day changed</string>
+    <string name="Information">Information</string>
+    <string name="Author">Author: Elena Soukhanov</string>
+    <string name="Version">Activity version: 1</string>
+    <string name="How_to">How to use this Interface</string>
+    <string name="Save_Edit">Save - Edit the temperature rule and save it</string>
+    <string name="Save_new_day"><b><i>Save as new day</i></b> - Select the day and save</string>
+    <string name="Close_Dialog">Close – Close the Dialog window</string>
+    <string name="Help">Help</string>
+    <string name="About">About</string>
+    <string name="House_Thermostat">House Thermostat</string>
+    <string name="Ok">Ok</string>
+
+
 </resources>

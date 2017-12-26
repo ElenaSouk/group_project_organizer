@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 /*    @Override
-    // Initiates Menu XML file (defines menu_items view layout)
+    // Initiates Menu XML file (defines menu_items view thermo_popup)
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
         return true;
@@ -73,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.house_thermostat:
                         //Intent third = new Intent(context, House_thermostat.class);
                         //startActivity(third);
-                        Toast.makeText(MainActivity.this, "House thermostat is selected", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, ActivityHouseThermostat.class);
+                        startActivity(intent);
+                        //Toast.makeText(MainActivity.this, "House thermostat is selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.automobile:
                         //Intent fourth = new Intent(context, Automobile.class);

@@ -17,10 +17,10 @@
             android:id="@+id/automobile"
             android:icon="@android:drawable/btn_dialog"
             android:title="Automobile" />
-    <item
-        android:id="@+id/house_thermostat"
-        android:icon="@android:drawable/btn_default_small"
-        android:title="House Thermostat" />
+        <item
+            android:id="@+id/house_thermostat"
+            android:icon="@drawable/temp"
+            android:title="@string/House_Thermostat" />
 
     </menu>
 
