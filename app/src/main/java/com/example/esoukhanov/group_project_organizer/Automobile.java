@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,7 +70,7 @@ protected ListItimAdapter messageAdapter;
                 final AlertDialog.Builder builder = new AlertDialog.Builder(Automobile.this);
                 builder.setMessage(R.string.dialog_message2);
                 builder.setTitle(R.string.dialog_title2);
-                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.ok1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
@@ -154,7 +153,7 @@ protected ListItimAdapter messageAdapter;
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Automobile.this);
                     builder.setMessage(R.string.dialog_message);
                     builder.setTitle(R.string.dialog_title);
-                    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(R.string.ok1, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
                            // User cancelled the dialog

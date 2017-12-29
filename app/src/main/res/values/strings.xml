@@ -10,7 +10,7 @@
         Button ADD will add new record into list view and sort it by date.
         Pressing the record into the list view it will load fragment with ditaild info of record and option to delet it.</string>
     <string name="dialog_message">All fiels are mandatory!!  </string>
-    <string name="ok">OK</string>
+    <string name="ok1">OK</string>
     <string name="dialog_title2">Automobile Info</string>
     <string name="dialog_title">ERROR</string>
     <string name="cancel">Cancel</string>

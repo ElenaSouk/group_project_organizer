@@ -19,9 +19,7 @@
         </activity>
         <activity android:name=".Automobile" />
         <activity android:name=".ItimDelete" />
-        <activity android:name=".Honda_Types">
-        </activity>
-
+        <activity android:name=".Honda_Types"/>
     </application>
 
 </manifest>
